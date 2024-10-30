@@ -32,14 +32,8 @@
         }
 
         .header img {
-            width: 24px;
+            width: 100px; /* Adjusted to maintain consistency */
             margin-right: 10px;
-        }
-
-        .header-time {
-            flex-grow: 1;
-            text-align: right;
-            font-size: 18px;
         }
 
         .transit-card {
@@ -72,14 +66,17 @@
             height: auto;
         }
 
-        .expire-button {
+        .expire-button,
+        .live-map-button {
             background-color: #ff5c5c;
             color: white;
             border: none;
             padding: 10px 20px;
             border-radius: 20px;
             cursor: pointer;
-            margin-top: 10px;
+            margin: 10px auto;
+            display: block;
+            width: fit-content;
         }
 
         .expire-info {
@@ -89,27 +86,14 @@
 
         .bottom-nav {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             background-color: #fff;
-            width: 10%;
             border-top: 1px solid #ddd;
+            padding: 10px 0;
         }
 
-        .header img {
-            width: 100px;
-            margin-right: 1px;
-        }
-
-        .live-map-button {
-            background-color: #ff5c5c;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            margin: 15px auto;
-            display: block;
-            width: fit-content;
+        .bottom-nav img {
+            width: 100%; /* Adjusted to fit the container */
         }
     </style>
 </head>
@@ -118,7 +102,6 @@
         <!-- Header -->
         <div class="header">
             <img src="menu.png" alt="Menu" />
-            <!-- <div class="header-time" id="current-time">8:03</div> -->
         </div>
 
         <!-- Transit Card -->
@@ -128,7 +111,7 @@
             <h2 id="current-clock">8:03:06 PM</h2>
             <p>Barrie Transit</p>
             <div class="transit-image">
-                <img src="./BarrieBus.gif" alt="">
+                <img src="./BarrieBus.gif" alt="Barrie Bus">
             </div>
             <button class="expire-button">Expire</button>
             <div class="expire-info">
@@ -142,7 +125,7 @@
 
         <!-- Bottom Navigation -->
         <div class="bottom-nav">
-			<img src="./icons.png" style="width: 1000%;" alt="Home">
+            <img src="./icons.png" alt="Home">
         </div>
     </div>
 
@@ -161,9 +144,7 @@
 
         // Update the time every second
         setInterval(updateTime, 1000);
-
-        // Initial call to set the date and time immediately
-        updateTime();
+        updateTime(); // Initial call to set the date and time immediately
     </script>
 </body>
 </html>
