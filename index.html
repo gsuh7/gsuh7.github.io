@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barrie Transit UI</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 375px; /* Typical mobile width */
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+        }
+
+        .header img {
+            width: 24px;
+            margin-right: 10px;
+        }
+
+        .header-time {
+            flex-grow: 1;
+            text-align: right;
+            font-size: 18px;
+        }
+
+        .transit-card {
+            background-color: #a0435c;
+            color: white;
+            border-radius: 10px;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .transit-card h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .transit-card p {
+            margin: 5px 0;
+        }
+
+        .transit-image {
+            background-color: #e0e0e0;
+            margin: 15px 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .transit-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .expire-button {
+            background-color: #ff5c5c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .expire-info {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #fff;
+            width: 10%;
+            border-top: 1px solid #ddd;
+        }
+
+        .bottom-nav a {
+            text-align: center;
+            font-size: 12px;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .bottom-nav a img {
+            width: 24px;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 5px;
+        }
+        .header img {
+            width: 100px; /* Increased the width of the menu icon */
+            margin-right: 10px;
+        }
+
+        .live-map-button {
+            background-color: #ff5c5c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 15px auto;
+            display: block;
+            width: fit-content;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="menu.png" alt="Menu" />
+            <!-- <div class="header-time" id="current-time">8:03</div> -->
+        </div>
+
+        <!-- Transit Card -->
+        <div class="transit-card">
+            <p>Adult 10 Ride Card</p>
+            <h2 id="current-date">Sat Oct 12 2024</h2>
+            <h2 id="current-clock">8:03:06 PM</h2>
+            <p>Barrie Transit</p>
+            <div class="transit-image">
+                <img src="./BarrieBus.gif" alt="">
+            </div>
+            <button class="expire-button">Expire</button>
+            <div class="expire-info">
+                This pass expires after 88 minutes<br>
+                <small>User ID 1111510047</small>
+            </div>
+        </div>
+
+        <!-- Live Map Button -->
+        <button class="live-map-button">Live Map</button>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+			<img src="./icons.png" style="width: 1000%;" alt="Home">
+        </div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const dateOptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+            const currentDate = now.toLocaleDateString('en-US', dateOptions);
+            const currentTime = now.toLocaleTimeString('en-US');
+            const currentHeaderTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            document.getElementById('current-date').textContent = currentDate;
+            document.getElementById('current-clock').textContent = currentTime;
+            document.getElementById('current-time').textContent = currentHeaderTime;
+        }
+
+        // Update the time every second
+        setInterval(updateTime, 1000);
+
+        // Initial call to set the date and time immediately
+        updateTime();
+    </script>
+</body>
+</html>
